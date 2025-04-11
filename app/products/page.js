@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 
 export default function Products() {
@@ -196,10 +197,13 @@ export default function Products() {
             <Link href={`/products/${product.id}`} key={product.id}>
               <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                 <div className="relative h-64">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.title}
-                    className="absolute w-full h-full object-contain p-4"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-contain p-4"
+                    priority={false}
                   />
                 </div>
                 <div className="p-4">

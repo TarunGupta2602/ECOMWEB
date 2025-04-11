@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '../../context/CartContext';
 
 export default function ProductDetail() {
@@ -75,38 +76,32 @@ export default function ProductDetail() {
         ← Back to Products
       </Link>
       
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="md:flex">
-          {/* Product Image */}
           <div className="md:w-1/2">
-            <div className="relative h-96 md:h-full">
-              <img
+            <div className="relative h-96 w-full">
+              <Image
                 src={product.image}
                 alt={product.title}
-                className="absolute w-full h-full object-contain p-8"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain p-4"
+                priority
               />
             </div>
           </div>
-
-          {/* Product Details */}
           <div className="md:w-1/2 p-8">
-            <div className="mb-4">
-              <span className="inline-block px-2 py-1 text-sm text-gray-600 bg-gray-100 rounded">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{product.title}</h1>
+            <p className="text-gray-600 text-lg mb-4">{product.description}</p>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-3xl font-bold text-blue-600">
+                ${product.price.toFixed(2)}
+              </span>
+              <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
                 {product.category}
               </span>
             </div>
             
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.title}</h1>
-            
-            <div className="text-2xl font-bold text-blue-600 mb-6">
-              ${product.price.toFixed(2)}
-            </div>
-            
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">Description</h2>
-              <p className="text-gray-600">{product.description}</p>
-            </div>
-
             <div className="mb-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-2">Rating</h2>
               <div className="flex items-center">

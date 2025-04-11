@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useUser } from '@clerk/nextjs';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);
@@ -37,28 +39,26 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative bg-gray-900 h-[70vh]">
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200"
-            alt="Shopping"
-            className="w-full h-full object-cover opacity-50"
+      <div className="relative">
+        <div className="relative h-[500px] w-full">
+          <Image
+            src="/hero-image.jpg"
+            alt="Hero Image"
+            fill
+            priority
+            className="object-cover"
           />
-        </div>
-        <div className="relative h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Welcome to Our Store
-            </h1>
-            <p className="text-xl text-gray-200 mb-8">
-              Discover amazing products across various categories
-            </p>
-            <Link 
-              href="/products"
-              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Shop All Products
-            </Link>
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="text-center text-white">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Our Store</h1>
+              <p className="text-xl mb-8">Discover amazing products at great prices</p>
+              <Link
+                href="/products"
+                className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+              >
+                Shop Now
+              </Link>
+            </div>
           </div>
         </div>
       </div>

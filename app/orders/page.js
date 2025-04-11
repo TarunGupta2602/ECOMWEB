@@ -1,6 +1,7 @@
 'use client';
 import { useUser } from '@clerk/nextjs';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Orders() {
   const { user } = useUser();
@@ -85,14 +86,19 @@ export default function Orders() {
                   </span>
                 </div>
                 
-                <div className="border-t border-gray-200 -mx-6 px-6 py-4">
+                <div className="space-y-4">
                   {order.items.map((item) => (
                     <div key={item.id} className="flex items-center py-4 border-b last:border-b-0">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-16 h-16 object-contain rounded"
-                      />
+                      <div className="relative w-16 h-16">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 768px) 64px, 64px"
+                          className="object-contain rounded"
+                          priority={false}
+                        />
+                      </div>
                       <div className="ml-4 flex-1">
                         <h3 className="text-sm font-medium text-gray-900">{item.title}</h3>
                         <p className="text-sm text-gray-600">
@@ -121,7 +127,7 @@ export default function Orders() {
 
         {orders.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600">You haven't placed any orders yet.</p>
+            <p className="text-gray-600">You haven&apos;t placed any orders yet.</p>
           </div>
         )}
       </div>

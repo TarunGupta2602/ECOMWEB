@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useUser } from '@clerk/nextjs';
 import { SignInButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Cart() {
   const { cart, total, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -90,11 +91,16 @@ export default function Cart() {
             <div className="bg-white rounded-lg shadow-md p-6 mb-4">
               {cart.map((item) => (
                 <div key={item.id} className="flex items-center py-4 border-b last:border-b-0">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-20 h-20 object-contain rounded"
-                  />
+                  <div className="relative w-20 h-20">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 80px, 80px"
+                      className="object-contain rounded"
+                      priority={false}
+                    />
+                  </div>
                   <div className="flex-1 ml-4">
                     <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                     <p className="text-gray-600">${item.price.toFixed(2)}</p>
