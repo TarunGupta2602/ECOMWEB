@@ -36,29 +36,31 @@ export default function Home() {
     "women's clothing": "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=500"
   };
 
+  const heroImage = "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070";
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative">
-        <div className="relative h-[500px] w-full">
+      <div className="relative h-[500px] w-full overflow-hidden">
+        <div className="relative w-full h-full">
           <Image
-            src="/hero-image.jpg"
+            src="/images/m.png"
             alt="Hero Image"
             fill
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Our Store</h1>
-              <p className="text-xl mb-8">Discover amazing products at great prices</p>
-              <Link
-                href="/products"
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Shop Now
-              </Link>
-            </div>
+        </div>
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Our Store</h1>
+            <p className="text-xl mb-8">Discover amazing products at great prices</p>
+            <Link
+              href="/products"
+              className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Shop Now
+            </Link>
           </div>
         </div>
       </div>
@@ -84,11 +86,14 @@ export default function Home() {
                 className="group"
               >
                 <div className="relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]">
-                  <img
-                    src={categoryImages[category]}
-                    alt={category}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={categoryImages[category]}
+                      alt={category}
+                      fill
+                      className="object-cover transform group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <h3 className="text-xl font-semibold text-white capitalize">
